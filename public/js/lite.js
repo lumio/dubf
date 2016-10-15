@@ -7,7 +7,7 @@ window.lsel = (function() {
     return input.replace( escapeRegex, '\\$&' );
   }
 
-  return function( element ) {
+  let obj = function( element ) {
     let _element = element;
 
     if ( typeof element === 'string' ) {
@@ -29,11 +29,17 @@ window.lsel = (function() {
         let findToken = new RegExp( escapeInput( className ), 'g' );
         element.className = element.className.replace( findToken, '' ).trim();
         return this;
+      },
+
+      elm() {
+        return element;
       }
 
     }
 
-  }
+  };
+
+  return obj;
 
 })();
 
