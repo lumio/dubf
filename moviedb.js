@@ -50,6 +50,14 @@ module.exports = function( server ) {
       if ( !item.title && item.name ) {
         item.title = item.name;
       }
+
+      let searchTokens = [ item.title ];
+      if ( item.release_date && item.release_date.match( /^([\d]{4})/ ) ) {
+        let match = item.release_date.match( /^([\d]{4})/ );
+        searchTokens.push( match[ 1 ] );
+      }
+      item.url = 'https://www.youtube.com/results?search_query=' +
+        encodeURIComponent( searchTokens.join( ' ' ) + ' trailer' );
       return item;
     }
 
