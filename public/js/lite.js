@@ -39,6 +39,14 @@ window.lsel = (function() {
         this.removeClass( 'visible' );
       },
 
+      blur() {
+        element.blur();
+      },
+
+      focus() {
+        element.focus();
+      },
+
       clear() {
         element.innerHTML = '';
       },

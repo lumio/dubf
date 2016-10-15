@@ -32,7 +32,6 @@ window.lview = (function( $ ) {
       image: $.create( 'img' ),
     };
 
-    console.log( data );
     elements.title.textContent = data.title;
     elements.image.addEventListener( 'load', showResult );
     elements.image.setAttribute( 'src', data.poster );
@@ -44,8 +43,10 @@ window.lview = (function( $ ) {
     resultElm.elm().appendChild( elements.link );
   };
 
-  obj.reset = function() {
-    selectTypeElm.show();
+  obj.reset = function( showSelectBox = true ) {
+    if ( showSelectBox ) {
+      selectTypeElm.show();
+    }
     resultElm.addClass( 'hide-transition' );
     resultButtonsElm.hide();
     hideLoadingIndicator();

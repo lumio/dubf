@@ -13,6 +13,10 @@
   position: absolute;
   right: calc(1rem + 10px);
   top: 1rem;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
 }
 
 #ResultButtons button {
@@ -21,7 +25,7 @@
   background: #e30e1f;
   box-shadow: 10px 10px 0 #ccc;
 
-  margin: 0;
+  margin: 0 0 0 1rem;
   padding: .5rem;
   border: none;
   outline: none;
