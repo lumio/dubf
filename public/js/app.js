@@ -29,10 +29,10 @@
   $( 'Restart' ).elm().addEventListener( 'click', function( event ) {
     window.lview.reset( false );
     $( event.target ).focus();
+    receiveItem( lastType );
     setTimeout( function() {
       $( event.target ).blur();
-      receiveItem( lastType );
-    }, 250 )
+    }, 1000 )
   } );
   $( 'Reset' ).elm().addEventListener( 'click', function() {
     window.lview.reset();
