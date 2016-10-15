@@ -35,6 +35,8 @@ window.lview = (function( $ ) {
     elements.image.addEventListener( 'load', showResult );
     elements.image.setAttribute( 'src', data.poster );
 
+    elements.link.setAttribute( 'href', data.url );
+    elements.link.setAttribute( 'target', '_blank' );
     elements.link.appendChild( elements.title );
     elements.link.appendChild( elements.image );
     resultElm.elm().appendChild( elements.link );
