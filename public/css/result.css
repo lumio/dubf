@@ -11,8 +11,42 @@
 
 #ResultButtons {
   position: absolute;
+  right: calc(1rem + 10px);
+  top: 1rem;
+}
+
+#ResultButtons button {
+  font: 1.3rem/1.5 'Patua One', cursive;
+  color: #fff;
+  background: #e30e1f;
+  box-shadow: 10px 10px 0 #ccc;
+
+  margin: 0;
+  padding: .5rem;
+  border: none;
+  outline: none;
+
+  transition: all .25s ease;
+}
+
+#ResultButtons button:active, #ResultButtons button:focus {
+  margin: 10px -10px -10px 10px;
+  box-shadow: 0 0 0 #626262;
+  outline: none;
+}
+
+#Result {
+  position: absolute;
   left: 0;
   top: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity .5s, visibility 0s .5s;
+}
+
+#Result.hide-transition {
+  opacity: 0;
+  visibility: hidden;
 }
 
 #Result a {
@@ -60,6 +94,7 @@
   margin: 0 -50vw -50vw 0;
   box-shadow: none;
 }
+
 #Result.visible img {
   animation: result-image 1s ease 1 forwards;
 }
