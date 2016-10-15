@@ -8,8 +8,8 @@ So in memory of Dubf, this is going to be a random movie/series picker.
  
 Since this is a weekend project and the weekend here in Europe just began, this is still in the making.
  
-Best of the best
- – Ben
+Best wishes  
+– Ben
 
 Running the app
 ---------------
