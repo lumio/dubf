@@ -42,7 +42,7 @@ module.exports = function ( server ) {
     console.log( mdbConfig );
     let randomResult = random.integer( 0, results.length - 1 );
     let item = results[ randomResult ];
-    item.poster = 'https://image.tmdb.org/t/p/w800' + item.poster_path;
+    item.poster = mdbConfig.images.base_url + 'w780' + item.poster_path;
 
     return reply( item );
   }
