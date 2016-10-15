@@ -73,7 +73,10 @@ module.exports = function( server ) {
 
   function responseWithRandomItem( type, mdbConfig, request, reply, retries = 10 ) {
     let page = getRandomPage( pages[ type ] );
-    movieDB[ type ]( { page }, function( err, res ) {
+    movieDB[ type ]( {
+      page,
+      sort_by: 'popularity.desc'
+    }, function( err, res ) {
       if ( res && res.total_pages ) {
         pages[ type ] = Math.round( res.total_pages * .1 );
       }
