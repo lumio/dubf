@@ -7,7 +7,6 @@
         url: '',
         data: null,
       }, options );
-      console.log( _options );
 
       let xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
