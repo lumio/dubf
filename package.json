@@ -4,7 +4,8 @@
   "description": "Dubf the oracle will pick your next movie or series to watch.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp build && node ."
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,8 @@
     "inert": "^4.0.2",
     "moviedb": "^0.2.7",
     "random-js": "^1.0.8"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
   }
 }

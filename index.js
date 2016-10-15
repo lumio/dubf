@@ -8,7 +8,7 @@ const server = new hapi.Server( {
   connections: {
     routes: {
       files: {
-        relativeTo: path.join( __dirname, 'public' )
+        relativeTo: path.join( __dirname, 'public_dist' )
       }
     }
   }
