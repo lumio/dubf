@@ -2,6 +2,7 @@ window.lview = (function( $ ) {
   let loadingIndicatorElm = $( 'LoadingIndicator' );
   let selectTypeElm = $( 'SelectType' );
   let resultElm = $( 'Result' );
+  let resultButtonsElm = $( 'ResultButtons' );
 
   function showLoadingIndicator() {
     loadingIndicatorElm.show();
@@ -21,6 +22,7 @@ window.lview = (function( $ ) {
     function showResult() {
       selectTypeElm.hide();
       resultElm.show();
+      resultButtonsElm.show();
       hideLoadingIndicator();
     }
 
@@ -40,6 +42,18 @@ window.lview = (function( $ ) {
     elements.link.appendChild( elements.title );
     elements.link.appendChild( elements.image );
     resultElm.elm().appendChild( elements.link );
+  };
+
+  obj.reset = function() {
+    selectTypeElm.show();
+    resultElm.addClass( 'hide-transition' );
+    resultButtonsElm.hide();
+    hideLoadingIndicator();
+
+    setTimeout( function() {
+      resultElm.hide();
+      resultElm.removeClass( 'hide-transition' );
+    }, 500 );
   };
 
   obj.showLoadingIndicator = showLoadingIndicator;

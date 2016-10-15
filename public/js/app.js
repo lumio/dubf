@@ -23,5 +23,8 @@
 
   $( 'SelectTypeMovie' ).elm().addEventListener( 'click', selectType );
   $( 'SelectTypeTVShow' ).elm().addEventListener( 'click', selectType );
+  $( 'Restart' ).elm().addEventListener( 'click', function() {
+    window.lview.reset();
+  } );
 
 })( window.lsel, window.lview );
