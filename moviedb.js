@@ -9,7 +9,7 @@ const random = new Random( Random.engines.mt19937().autoSeed() );
 
 module.exports = function ( server ) {
 
-  let availableMoviePages = 0;
+  let pages = {};
   let movieConfig = false;
 
   function getRandomPage( availablePages ) {
@@ -48,10 +48,10 @@ module.exports = function ( server ) {
   }
 
   function responseWithRandomItem( type, mdbConfig, request, reply ) {
-    let page = getRandomPage( availableMoviePages );
+    let page = getRandomPage( pages[ type ] );
     movieDB[ type ]( { page }, function ( err, res ) {
       if ( res && res.total_pages ) {
-        availableMoviePages = Math.round( res.total_pages * .1 );
+        pages[ type ] = Math.round( res.total_pages * .1 );
       }
 
       requestResponse( res.results, mdbConfig, reply );
@@ -68,4 +68,13 @@ module.exports = function ( server ) {
     }
   } );
 
+  server.route( {
+    method: 'GET',
+    path: '/api/dubf/tvshow',
+    handler: function ( request, reply ) {
+      getConfiguration().then( ( mdbConfig ) => {
+        responseWithRandomItem( 'discoverTv', mdbConfig, request, reply );
+      } );
+    }
+  } );
 };
