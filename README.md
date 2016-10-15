@@ -29,5 +29,5 @@ Disclaimer
 
 This project would not work without the great API of TheMovieDB.org <https://www.themoviedb.org>.
 
-Feel free to copy and fork and manipulate and do the f* whatever you want.
+Feel free to copy and fork and manipulate and do the f* whatever you want with this project.
 See the license for "more" details.
