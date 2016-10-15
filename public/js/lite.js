@@ -26,7 +26,7 @@ window.lsel = (function() {
       },
 
       removeClass( className ) {
-        let findToken = new RegExp( escapeInput( className ), 'g' );
+        let findToken = new RegExp( escapeInput( className ) + '[\s]*', 'g' );
         element.className = element.className.replace( findToken, '' ).trim();
         return this;
       },
