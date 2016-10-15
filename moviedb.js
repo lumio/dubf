@@ -39,7 +39,6 @@ module.exports = function ( server ) {
   }
 
   function requestResponse( results, mdbConfig, reply ) {
-    console.log( mdbConfig );
     let randomResult = random.integer( 0, results.length - 1 );
     let item = results[ randomResult ];
     item.poster = mdbConfig.images.base_url + 'w780' + item.poster_path;
