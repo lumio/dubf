@@ -3,12 +3,17 @@
 const path = require( 'path' );
 const hapi = require( 'hapi' );
 
+let staticDirectory = 'public_dist';
+if ( process.env.DEVELOPMENT ) {
+  staticDirectory = 'public';
+}
+
 const server = new hapi.Server( {
 
   connections: {
     routes: {
       files: {
-        relativeTo: path.join( __dirname, 'public_dist' )
+        relativeTo: path.join( __dirname, staticDirectory )
       }
     }
   }
