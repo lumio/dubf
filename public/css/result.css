@@ -1,13 +1,18 @@
-#Result {
+#Result, #ResultButtons {
   visibility: hidden;
   opacity: 0;
-
   transition: all 1s ease;
 }
 
-#Result.visible {
+#Result.visible, #ResultButtons.visible {
   visibility: visible;
   opacity: 1;
+}
+
+#ResultButtons {
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 #Result a {
@@ -34,18 +39,15 @@
 
   width: 30vw;
   font: 4.5em/.85 'Molle', cursive;
-  margin: 0 -9px calc(-1em - 9px) calc(-.5em + 9px);
+  margin: 0 -9px calc(-1em - 9px) calc(-1em + 9px);
   padding: 0;
 
   color: #fff;
-  text-shadow: -2px -2px 0 #000,
-  2px -2px 0 #000,
-  -2px 2px 0 #000,
-  2px 2px 0 #000;
+  text-shadow: none;
 }
 
 #Result.visible h1 {
-  animation: result-title 1s .5s ease 1 forwards;
+  animation: result-title 1s ease 1 forwards;
 }
 
 #Result img {
@@ -55,17 +57,17 @@
   max-width: 500px;
   height: auto;
 
+  margin: 0 -50vw -50vw 0;
   box-shadow: none;
-  animation: result-image 1.5s ease 1 forwards;
+}
+#Result.visible img {
+  animation: result-image 1s ease 1 forwards;
 }
 
 @keyframes result-title {
   0% {
-    text-shadow: -2px -2px 0 #000,
-    2px -2px 0 #000,
-    -2px 2px 0 #000,
-    2px 2px 0 #000;
-    margin: 0 -9px calc(-1em - 9px) calc(-.5em + 9px);
+    text-shadow: none;
+    margin: 0 -9px calc(-1em - 9px) calc(-1em + 9px);
   }
   100% {
     text-shadow: -2px -2px 0 #000,
@@ -81,17 +83,17 @@
     7px 7px 0 #000,
     8px 8px 0 #000,
     9px 9px 0 #000;
-    margin: 0 0 -1em -.5em;
+    margin: 0 0 -1em -1em;
   }
 }
 
 @keyframes result-image {
   0% {
-    margin: 0 -20px -20px 0;
+    margin: 0 -50vw -50vw 0;
     box-shadow: 0 0 0 #626262;
   }
   100% {
     margin: 0;
-    box-shadow: 20px 20px 0 #ccc;
+    box-shadow: 40px 40px 0 #ccc;
   }
 }
