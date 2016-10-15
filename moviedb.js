@@ -38,15 +38,29 @@ module.exports = function( server ) {
     } );
   }
 
-  function requestResponse( results, mdbConfig, reply ) {
+  function getRandomItemWithPoster( results, mdbConfig, retries = 10 ) {
     let randomResult = random.integer( 0, results.length - 1 );
     let item = results[ randomResult ];
-    item.poster = mdbConfig.images.base_url + 'w780' + item.poster_path;
 
+    if ( !item.poster_path && retries ) {
+      return getRandomItemWithPoster( results, mdbConfig, retries - 1 );
+    }
+    else if ( item.poster_path ) {
+      item.poster = mdbConfig.images.base_url + 'w780' + item.poster_path;
+      return item;
+    }
+
+    return false;
+  }
+
+  function requestResponse( item, type, mdbConfig, request, reply, retries ) {
+    if ( !item ) {
+      return responseWithRandomItem( type, mdbConfig, request, reply, retries - 1 );
+    }
     return reply( item );
   }
 
-  function responseWithRandomItem( type, mdbConfig, request, reply, roundsUntilDead = 10 ) {
+  function responseWithRandomItem( type, mdbConfig, request, reply, retries = 10 ) {
     let page = getRandomPage( pages[ type ] );
     movieDB[ type ]( { page }, function( err, res ) {
       if ( res && res.total_pages ) {
@@ -55,11 +69,12 @@ module.exports = function( server ) {
 
       if ( !res || !res.results && roundsUntilDead ) {
         setTimeout( function() {
-          responseWithRandomItem( type, mdbConfig, request, reply, roundsUntilDead - 1 );
+          responseWithRandomItem( type, mdbConfig, request, reply, retries - 1 );
         }, 500 );
       }
       else if ( res && res.results ) {
-        requestResponse( res.results, mdbConfig, reply );
+        let item = getRandomItemWithPoster( res.results, mdbConfig );
+        requestResponse( item, type, mdbConfig, request, reply, retries );
       }
       else {
         reply( { error: 'No movie found', mdbError: err } );
