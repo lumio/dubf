@@ -1,13 +1,11 @@
-(function( $ ) {
-  let loadingIndicator = $( 'LoadingIndicator' );
+(function( $, $v ) {
 
   function receiveItem( type ) {
-    loadingIndicator.addClass( 'visible' );
+    $v.showLoadingIndicator();
 
     let url = `/api/dubf/${type}`;
     $.get( url ).then( function( data ) {
-      console.log( data );
-      loadingIndicator.removeClass( 'visible' );
+      window.lview( data );
     } );
   }
 
@@ -26,4 +24,4 @@
   $( 'SelectTypeMovie' ).elm().addEventListener( 'click', selectType );
   $( 'SelectTypeTVShow' ).elm().addEventListener( 'click', selectType );
 
-})( window.lsel );
+})( window.lsel, window.lview );
