@@ -3,6 +3,9 @@
   opacity: 0;
   transition: all .5s ease;
   z-index: 500;
+
+  text-indent: -9999px;
+  background: #fff url(../images/gears.gif) no-repeat center;
 }
 
 #LoadingIndicator.visible {
