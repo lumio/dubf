@@ -7,7 +7,7 @@ const movieDB = require( 'moviedb' )( config.moviedbKey );
 const Random = require( 'random-js' );
 const random = new Random( Random.engines.mt19937().autoSeed() );
 
-module.exports = function ( server ) {
+module.exports = function( server ) {
 
   let pages = {};
   let movieConfig = false;
@@ -23,7 +23,7 @@ module.exports = function ( server ) {
   function getConfiguration() {
     return new Promise( ( resolve, reject ) => {
       if ( !movieConfig ) {
-        movieDB.configuration( {}, function ( err, res ) {
+        movieDB.configuration( {}, function( err, res ) {
           if ( err ) {
             reject( err );
           }
@@ -46,21 +46,31 @@ module.exports = function ( server ) {
     return reply( item );
   }
 
-  function responseWithRandomItem( type, mdbConfig, request, reply ) {
+  function responseWithRandomItem( type, mdbConfig, request, reply, roundsUntilDead = 10 ) {
     let page = getRandomPage( pages[ type ] );
-    movieDB[ type ]( { page }, function ( err, res ) {
+    movieDB[ type ]( { page }, function( err, res ) {
       if ( res && res.total_pages ) {
         pages[ type ] = Math.round( res.total_pages * .1 );
       }
 
-      requestResponse( res.results, mdbConfig, reply );
+      if ( !res || !res.results && roundsUntilDead ) {
+        setTimeout( function() {
+          responseWithRandomItem( type, mdbConfig, request, reply, roundsUntilDead - 1 );
+        }, 500 );
+      }
+      else if ( res && res.results ) {
+        requestResponse( res.results, mdbConfig, reply );
+      }
+      else {
+        reply( { error: 'No movie found', mdbError: err } );
+      }
     } );
   }
 
   server.route( {
     method: 'GET',
     path: '/api/dubf/movie',
-    handler: function ( request, reply ) {
+    handler: function( request, reply ) {
       getConfiguration().then( ( mdbConfig ) => {
         responseWithRandomItem( 'discoverMovie', mdbConfig, request, reply );
       } );
@@ -70,7 +80,7 @@ module.exports = function ( server ) {
   server.route( {
     method: 'GET',
     path: '/api/dubf/tvshow',
-    handler: function ( request, reply ) {
+    handler: function( request, reply ) {
       getConfiguration().then( ( mdbConfig ) => {
         responseWithRandomItem( 'discoverTv', mdbConfig, request, reply );
       } );
