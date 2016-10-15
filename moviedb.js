@@ -47,6 +47,9 @@ module.exports = function( server ) {
     }
     else if ( item.poster_path ) {
       item.poster = mdbConfig.images.base_url + 'w780' + item.poster_path;
+      if ( !item.title && item.name ) {
+        item.title = item.name;
+      }
       return item;
     }
 
