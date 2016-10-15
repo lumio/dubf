@@ -10,3 +10,16 @@ Since this is a weekend project and the weekend here in Europe just began, this 
  
 Best of the best
  – Ben
+
+Running the app
+---------------
+
+In order to use this application you need an API key from themoviedb.org.
+It is free and you can generate a key within 2 minutes. Duplicate the `config.example.js` and name it `config.js`.
+Enter your API v3 key and then install the Node dependencies with `npm i` (hint: you need to have NodeJS installed).
+
+Start the server with
+
+```
+npm start
+```
