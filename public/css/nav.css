@@ -20,6 +20,9 @@
   justify-content: space-around;
 
   box-shadow: none;
+}
+
+#SelectType.visible ul {
   animation: select-box-move 1.5s ease 1 forwards;
 }
 
