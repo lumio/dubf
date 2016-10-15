@@ -31,12 +31,28 @@ window.lsel = (function() {
         return this;
       },
 
+      show() {
+        this.addClass( 'visible' );
+      },
+
+      hide() {
+        this.removeClass( 'visible' );
+      },
+
+      clear() {
+        element.innerHeight = '';
+      },
+
       elm() {
         return element;
       }
 
-    }
+    };
 
+  };
+
+  obj.create = function( type ) {
+    return document.createElement( type );
   };
 
   return obj;
