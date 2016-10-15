@@ -30,7 +30,7 @@
     window.lview.reset( false );
     $( event.target ).focus();
     setTimeout( function() {
-      $( event.target ).focus();
+      $( event.target ).blur();
       receiveItem( lastType );
     }, 250 )
   } );
