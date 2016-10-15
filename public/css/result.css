@@ -81,7 +81,7 @@
 }
 
 #Result.visible h1 {
-  animation: result-title 1s ease 1 forwards;
+  animation: result-title 1s .5s ease 1 forwards;
 }
 
 #Result img {
