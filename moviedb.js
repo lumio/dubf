@@ -1,0 +1,71 @@
+'use strict';
+
+const path = require( 'path' );
+const config = require( path.join( __dirname, 'config.js' ) );
+const movieDB = require( 'moviedb' )( config.moviedbKey );
+
+const Random = require( 'random-js' );
+const random = new Random( Random.engines.mt19937().autoSeed() );
+
+module.exports = function ( server ) {
+
+  let availableMoviePages = 0;
+  let movieConfig = false;
+
+  function getRandomPage( availablePages ) {
+    if ( !availablePages ) {
+      return random.integer( 1, 10 );
+    }
+
+    return random.integer( 1, availablePages );
+  }
+
+  function getConfiguration() {
+    return new Promise( ( resolve, reject ) => {
+      if ( !movieConfig ) {
+        movieDB.configuration( {}, function ( err, res ) {
+          if ( err ) {
+            reject( err );
+          }
+
+          movieConfig = res;
+          resolve( movieConfig );
+        } );
+      }
+      else {
+        resolve( movieConfig );
+      }
+    } );
+  }
+
+  function requestResponse( results, mdbConfig, reply ) {
+    console.log( mdbConfig );
+    let randomResult = random.integer( 0, results.length - 1 );
+    let item = results[ randomResult ];
+    item.poster = 'https://image.tmdb.org/t/p/w800' + item.poster_path;
+
+    return reply( item );
+  }
+
+  function responseWithRandomItem( type, mdbConfig, request, reply ) {
+    let page = getRandomPage( availableMoviePages );
+    movieDB[ type ]( { page }, function ( err, res ) {
+      if ( res && res.total_pages ) {
+        availableMoviePages = Math.round( res.total_pages * .1 );
+      }
+
+      requestResponse( res.results, mdbConfig, reply );
+    } );
+  }
+
+  server.route( {
+    method: 'GET',
+    path: '/api/dubf/movie',
+    handler: function ( request, reply ) {
+      getConfiguration().then( ( mdbConfig ) => {
+        responseWithRandomItem( 'discoverMovie', mdbConfig, request, reply );
+      } );
+    }
+  } );
+
+};

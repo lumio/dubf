@@ -1,0 +1,28 @@
+{
+  "name": "dubf",
+  "version": "1.0.0",
+  "description": "Dubf the oracle will pick your next movie or series to watch.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lumio/dubf.git"
+  },
+  "keywords": [
+    "themoviedb"
+  ],
+  "author": "Benjamin Falk <benjamin.falk@cyanjoe.com>",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/lumio/dubf/issues"
+  },
+  "homepage": "https://github.com/lumio/dubf#readme",
+  "dependencies": {
+    "hapi": "^15.1.1",
+    "inert": "^4.0.2",
+    "moviedb": "^0.2.7",
+    "random-js": "^1.0.8"
+  }
+}
