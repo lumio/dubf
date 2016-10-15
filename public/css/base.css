@@ -3,8 +3,13 @@
 }
 
 body {
+  font: 1.3rem/1.5 'Patua One', cursive;
+}
+
+body, ul, li {
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 .Base-full {
