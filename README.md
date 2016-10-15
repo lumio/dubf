@@ -23,3 +23,11 @@ Start the server with
 ```
 npm start
 ```
+
+Disclaimer
+----------
+
+This project would not work without the great API of TheMovieDB.org <https://www.themoviedb.org>.
+
+Feel free to copy and fork and manipulate and do the f* whatever you want.
+See the license for "more" details.
