@@ -30,6 +30,12 @@
     return $.request( {
       method: 'GET',
       url
+    } ).then( ( data ) => {
+      try {
+        return JSON.parse( data );
+      } catch ( e ) {
+        return data;
+      }
     } );
   }
 })( window.lsel );
