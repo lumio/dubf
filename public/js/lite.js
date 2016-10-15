@@ -40,7 +40,7 @@ window.lsel = (function() {
       },
 
       clear() {
-        element.innerHeight = '';
+        element.innerHTML = '';
       },
 
       elm() {
