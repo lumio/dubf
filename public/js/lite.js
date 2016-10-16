@@ -41,18 +41,54 @@ window.lsel = (function() {
 
       blur() {
         element.blur();
+        return this;
       },
 
       focus() {
         element.focus();
+        return this;
+      },
+
+      listener( eventName, callback ) {
+        element.addEventListener( eventName, callback );
+        return this;
+      },
+
+      attr( attributeName, value ) {
+        if ( typeof value === 'undefined' ) {
+          return element.getAttribute( attributeName );
+        }
+
+        element.setAttribute( attributeName, value );
+        return this;
+      },
+
+      text( value ) {
+        if ( typeof value === 'undefined' ) {
+          return element.textContent;
+        }
+
+        element.textContent = value;
+        return this;
       },
 
       clear() {
         element.innerHTML = '';
+        return this;
       },
 
       elm() {
         return element;
+      },
+
+      append( node ) {
+        let elm = node;
+        if ( typeof node.elm === 'function' ) {
+          elm = node.elm();
+        }
+
+        element.appendChild( elm );
+        return this;
       }
 
     };
@@ -60,7 +96,8 @@ window.lsel = (function() {
   };
 
   obj.create = function( type ) {
-    return document.createElement( type );
+    let elm = document.createElement( type );
+    return window.lsel( elm );
   };
 
   return obj;
