@@ -9,15 +9,10 @@ const random = new Random( Random.engines.mt19937().autoSeed() );
 
 module.exports = function( server ) {
 
-  let pages = {};
   let movieConfig = false;
 
-  function getRandomPage( availablePages ) {
-    if ( !availablePages ) {
-      return random.integer( 1, 10 );
-    }
-
-    return random.integer( 1, availablePages );
+  function getRandomPage() {
+    return random.integer( 1, 20 );
   }
 
   function getConfiguration() {
@@ -72,15 +67,11 @@ module.exports = function( server ) {
   }
 
   function responseWithRandomItem( type, mdbConfig, request, reply, retries = 10 ) {
-    let page = getRandomPage( pages[ type ] );
+    let page = getRandomPage();
     movieDB[ type ]( {
       page,
       sort_by: 'popularity.desc'
     }, function( err, res ) {
-      if ( res && res.total_pages ) {
-        pages[ type ] = Math.round( res.total_pages * .1 );
-      }
-
       if ( !res || !res.results && roundsUntilDead ) {
         setTimeout( function() {
           responseWithRandomItem( type, mdbConfig, request, reply, retries - 1 );
