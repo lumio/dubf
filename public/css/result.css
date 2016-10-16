@@ -47,6 +47,7 @@
   width: 100%;
   height: 100%;
   transition: opacity .5s, visibility 0s .5s;
+  overflow: hidden;
 }
 
 #Result.hide-transition {
@@ -104,6 +105,21 @@
   animation: result-image 1s ease 1 forwards;
 }
 
+.Result-star-background {
+  position: absolute;
+  left: 100%;
+  bottom: -150vh;
+  margin-left: -40vw;
+
+  width: 80vw;
+  height: auto;
+  transform: rotate(-180deg);
+}
+
+#Result.visible .Result-star-background {
+  animation: result-backgroundimage 1.5s ease 1 forwards;
+}
+
 @keyframes result-title {
   0% {
     text-shadow: none;
@@ -130,10 +146,23 @@
 @keyframes result-image {
   0% {
     margin: 0 -50vw -50vw 0;
-    box-shadow: 0 0 0 #626262;
+    box-shadow: 0 0 0 rgba(0,0,0,.62);
   }
   100% {
     margin: 0;
-    box-shadow: 40px 40px 0 #ccc;
+    box-shadow: 40px 40px 0 rgba(0,0,0,.2);
+  }
+}
+
+@keyframes result-backgroundimage {
+  0% {
+    transform: rotate(-180deg);
+    left: 100%;
+    bottom: -150vh;
+  }
+  100% {
+    transform: rotate(-360deg);
+    left: 50%;
+    bottom: -40vh;
   }
 }

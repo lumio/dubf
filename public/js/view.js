@@ -2,6 +2,7 @@ window.lview = (function( $ ) {
   let loadingIndicatorElm = $( 'LoadingIndicator' );
   let selectTypeElm = $( 'SelectType' );
   let resultElm = $( 'Result' );
+  let resultInnerElm = $( 'ResultInner' );
   let resultButtonsElm = $( 'ResultButtons' );
 
   function showLoadingIndicator() {
@@ -17,7 +18,7 @@ window.lview = (function( $ ) {
   };
 
   obj.view = function( data ) {
-    resultElm.clear();
+    resultInnerElm.clear();
 
     function showResult() {
       selectTypeElm.hide();
@@ -44,7 +45,7 @@ window.lview = (function( $ ) {
       .append( elements.title )
       .append( elements.image );
 
-    resultElm.append( elements.link );
+    resultInnerElm.append( elements.link );
   };
 
   obj.reset = function( showSelectBox = true ) {
