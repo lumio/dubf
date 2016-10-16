@@ -24,6 +24,7 @@
   color: #fff;
   background: #e30e1f;
   box-shadow: 10px 10px 0 #ccc;
+  cursor: pointer;
 
   margin: 0 0 0 1rem;
   padding: .5rem;
