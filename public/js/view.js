@@ -32,15 +32,19 @@ window.lview = (function( $ ) {
       image: $.create( 'img' ),
     };
 
-    elements.title.textContent = data.title;
-    elements.image.addEventListener( 'load', showResult );
-    elements.image.setAttribute( 'src', data.poster );
+    elements.title.text( data.title );
+    elements.image
+      .listener( 'load', showResult )
+      .attr( 'src', data.poster )
+      .addClass( 'Result-poster');
 
-    elements.link.setAttribute( 'href', data.url );
-    elements.link.setAttribute( 'target', '_blank' );
-    elements.link.appendChild( elements.title );
-    elements.link.appendChild( elements.image );
-    resultElm.elm().appendChild( elements.link );
+    elements.link
+      .attr( 'href', data.url )
+      .attr( 'target', '_blank' )
+      .append( elements.title )
+      .append( elements.image );
+
+    resultElm.append( elements.link );
   };
 
   obj.reset = function( showSelectBox = true ) {
