@@ -10,6 +10,7 @@ const random = new Random( Random.engines.mt19937().autoSeed() );
 module.exports = function( server ) {
 
   let movieConfig = false;
+  let currentYear = ( new Date() ).getFullYear();
 
   function getRandomPage() {
     return random.integer( 1, 20 );
@@ -72,14 +73,28 @@ module.exports = function( server ) {
       page,
       sort_by: 'popularity.desc'
     }, function( err, res ) {
-      if ( !res || !res.results && roundsUntilDead ) {
+      let retry = false;
+
+      let hasResults = res && res.results;
+      if ( !hasResults ) {
+        retry = true;
+      }
+      else {
+        let item = getRandomItemWithPoster( res.results, mdbConfig );
+        let itemNotReleasedYet = type == 'movie' &&
+          ( !item.release_date || parseInt( item.release_date.substr( 0, 4 ) ) > currentYear );
+        if ( itemNotReleasedYet ) {
+          retry = true;
+        }
+        else {
+          return requestResponse( item, type, mdbConfig, request, reply, retries );
+        }
+      }
+
+      if ( retry && retries ) {
         setTimeout( function() {
           responseWithRandomItem( type, mdbConfig, request, reply, retries - 1 );
         }, 500 );
-      }
-      else if ( res && res.results ) {
-        let item = getRandomItemWithPoster( res.results, mdbConfig );
-        requestResponse( item, type, mdbConfig, request, reply, retries );
       }
       else {
         reply( { error: 'No movie found', mdbError: err } );
