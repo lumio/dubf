@@ -2,6 +2,7 @@
 
 const path = require( 'path' );
 const hapi = require( 'hapi' );
+const config = require( path.join( __dirname, 'config.js' ) );
 
 let staticDirectory = 'public_dist';
 if ( process.env.DEVELOPMENT ) {
@@ -22,8 +23,8 @@ const server = new hapi.Server( {
 
 server.connection( {
 
-  host: 'localhost',
-  port: 8080,
+  host: config.host,
+  port: config.port,
 
 } );
 
