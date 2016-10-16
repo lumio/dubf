@@ -89,7 +89,7 @@
   animation: result-title 1s .5s ease 1 forwards;
 }
 
-#Result img {
+.Result-poster {
   position: relative;
   z-index: 50;
   width: 50vw;
@@ -100,7 +100,7 @@
   box-shadow: none;
 }
 
-#Result.visible img {
+#Result.visible .Result-poster {
   animation: result-image 1s ease 1 forwards;
 }
 
