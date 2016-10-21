@@ -29,11 +29,9 @@ window.lview = (function( $ ) {
 
     let elements = {
       link: $.create( 'a' ),
-      title: $.create( 'h1' ),
       image: $.create( 'img' ),
     };
 
-    elements.title.text( data.title );
     elements.image
       .listener( 'load', showResult )
       .attr( 'src', data.poster )
@@ -42,7 +40,6 @@ window.lview = (function( $ ) {
     elements.link
       .attr( 'href', data.url )
       .attr( 'target', '_blank' )
-      .append( elements.title )
       .append( elements.image );
 
     resultInnerElm.append( elements.link );
