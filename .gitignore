@@ -141,3 +141,5 @@ Temporary Items
 
 /config.js
 *.swp
+
+/public_dist
