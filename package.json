@@ -27,6 +27,9 @@
     "random-js": "^1.0.8"
   },
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-sourcemaps": "^2.1.1"
   }
 }
