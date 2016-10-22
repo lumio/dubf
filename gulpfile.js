@@ -8,6 +8,7 @@ const concat = require( 'gulp-concat' );
 const cleanCSS = require( 'gulp-clean-css' );
 const order = require( 'gulp-order' );
 const htmlreplace = require( 'gulp-html-replace' );
+const htmlmin = require( 'gulp-htmlmin' );
 
 const publicFolder = path.join( __dirname, './public' );
 const distFolder = path.join( __dirname, './public_dist' );
@@ -42,10 +43,27 @@ gulp.task( 'build', [ 'build-js', 'build-css' ], function () {
   gulp.src( path.join( publicFolder, './images/**/*' ) )
     .pipe( gulp.dest( path.join( distFolder, 'images' ) ) );
 
+  let replaceOptions = {
+    css: 'css/main.css',
+    js: 'js/app.js'
+  };
+
+  if ( process.env.GA && process.env.GA.match( /^[\w]{2}-[\d]+(-[\d]+)?$/ ) ) {
+    replaceOptions.ga = {
+      src: null,
+      tpl: `<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', '${process.env.GA}', 'auto');
+        ga('send', 'pageview');
+      </script>`
+    }
+  }
+
   gulp.src( path.join( publicFolder, './index.html' ) )
-    .pipe( htmlreplace( {
-      css: 'css/main.css',
-      js: 'js/app.js'
-    } ) )
+    .pipe( htmlreplace( replaceOptions ) )
+    .pipe( htmlmin( { collapseWhitespace: true } ) )
     .pipe( gulp.dest( distFolder ) );
 } );
