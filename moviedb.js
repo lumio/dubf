@@ -1,7 +1,9 @@
 'use strict';
 
 const path = require( 'path' );
-const config = require( path.join( __dirname, 'config.js' ) );
+const config = {
+  moviedbKey: ( process.env.APIKEY || '' )
+};
 const movieDB = require( 'moviedb' )( config.moviedbKey );
 
 const Random = require( 'random-js' );
