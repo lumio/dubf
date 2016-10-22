@@ -1,0 +1,8 @@
+{
+  "name": "Dubf Almighty",
+  "description": "Dubf the oracle will pick your next movie or tv show to watch.",
+  "repository": "https://github.com/lumio/dubf",
+  "logo": "https://raw.githubusercontent.com/lumio/dubf/master/public/images/star.svg",
+  "keywords": ["moviedb"],
+  "image": "heroku/nodejs"
+}
