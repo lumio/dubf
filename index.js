@@ -39,8 +39,8 @@ const server = new hapi.Server( {
 
 server.connection( {
 
-  host: config.host,
-  port: config.port,
+  host: ( process.env.HOST || config.host ),
+  port: ( process.env.PORT || config.port ),
 
 } );
 
