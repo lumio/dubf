@@ -83,7 +83,7 @@ server.register( require( 'inert' ), ( err ) => {
       process.exit( 1 );
     }
 
-    console.log( 'Server running at ', server.info.uri );
+    console.log( 'Server running at ', server.info.uri.green );
 
   } )
 } );
