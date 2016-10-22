@@ -4,11 +4,7 @@ const colors = require( 'colors' );
 const path = require( 'path' );
 const hapi = require( 'hapi' );
 
-let config = {
-  port: ( process.env.PORT || 5000 ),
-  host: process.env.HOST,
-  moviedbKey: ( process.env.APIKEY || '' )
-};
+const config = require( path.join( __dirname, 'lib/config' ) );
 let staticDirectory = 'public_dist';
 
 const server = new hapi.Server( {
@@ -50,7 +46,7 @@ server.register( require( 'inert' ), ( err ) => {
 
   } );
 
-  require( path.join( __dirname, 'moviedb.js' ) )( server );
+  require( path.join( __dirname, 'lib/moviedb' ) )( server );
 
   server.start( ( err ) => {
 
