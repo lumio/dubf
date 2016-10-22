@@ -3,22 +3,48 @@
 const colors = require( 'colors' );
 const path = require( 'path' );
 const hapi = require( 'hapi' );
-let config;
-try {
-  config = require( path.join( __dirname, 'config.js' ) );
-} catch ( err ) {
-  if ( err.code && err.code === 'MODULE_NOT_FOUND' ) {
+
+function getConfig() {
+  let _config = {};
+  let config = {};
+  let envConfig = {};
+  let configJSMissing = false;
+
+  try {
+    config = require( path.join( __dirname, 'config.js' ) );
+  } catch ( e ) {
+    configJSMissing = true;
+  }
+
+  if ( process.env.PORT )
+    envConfig.port = process.env.PORT;
+  if ( process.env.HOST )
+    envConfig.host = process.env.HOST;
+  if ( process.env.APIKEY )
+    envConfig.moviedbKey = process.env.APIKEY;
+
+  _config = Object.assign( _config, config, envConfig );
+
+  if ( !_config.port || !_config.host || !_config.moviedbKey ) {
     console.error( '\nWHOUPS!'.yellow );
     console.error( '  |'.yellow );
     console.error( '  v\n'.yellow );
-    console.error( 'It seams that you have no config.js. Duplicate config.example.js and name it config.js to get started.' );
-    console.error( 'In order to get this project working, you need to register on <http://themoviedb.org> and get yourself an API v3 key' );
-  }
-  else
-    console.error( err );
 
-  process.exit( 1 );
+    if ( configJSMissing ) {
+      console.error( 'It seams that you have no config.js. Duplicate config.example.js and name it config.js to get started.' );
+      console.error( 'In order to get this project working, you need to register on <http://themoviedb.org> and get yourself an API v3 key' );
+    }
+    else {
+      console.error( 'One or more options are not set. See config.example.js on how to set up your own config.js.' );
+    }
+
+    process.exit( 1 );
+  }
+
+  return _config;
 }
+
+let config = getConfig();
 
 let staticDirectory = 'public_dist';
 if ( process.env.DEVELOPMENT ) {
@@ -39,8 +65,8 @@ const server = new hapi.Server( {
 
 server.connection( {
 
-  host: ( process.env.HOST || config.host ),
-  port: ( process.env.PORT || config.port ),
+  host: config.host,
+  port: config.port,
 
 } );
 
