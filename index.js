@@ -46,10 +46,11 @@ function getConfig() {
 
 let config = getConfig();
 
-let staticDirectory = 'public_dist';
-if ( process.env.DEVELOPMENT ) {
-  staticDirectory = 'public';
-}
+// let staticDirectory = 'public_dist';
+// if ( process.env.DEVELOPMENT ) {
+//   staticDirectory = 'public';
+// }
+let staticDirectory = 'public';
 
 const server = new hapi.Server( {
 
