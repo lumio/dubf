@@ -5,7 +5,11 @@ const path = require( 'path' );
 const hapi = require( 'hapi' );
 
 const config = require( path.join( __dirname, 'lib/config' ) );
+
 let staticDirectory = 'public_dist';
+if ( process.env.DEVELOPMENT ) {
+  staticDirectory = 'public';
+}
 
 const server = new hapi.Server( {
 
