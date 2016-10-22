@@ -9,7 +9,7 @@
     "start": "node ."
   },
   "engines": {
-    "node": "4.9.1"
+    "node": "6.9.1"
   },
   "repository": {
     "type": "git",
