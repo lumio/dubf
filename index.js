@@ -13,11 +13,12 @@ function getConfig() {
   let envConfig = {};
   let configJSMissing = false;
 
-  try {
-    config = require( path.join( __dirname, 'config.js' ) );
-  } catch ( e ) {
-    configJSMissing = true;
-  }
+  // try {
+  //   config = require( path.join( __dirname, 'config.js' ) );
+  // } catch ( e ) {
+  //   configJSMissing = true;
+  // }
+  configJSMissing = true;
 
   if ( process.env.PORT )
     envConfig.port = process.env.PORT;
