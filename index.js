@@ -7,54 +7,12 @@ const hapi = require( 'hapi' );
 console.log( 'DEBUG ' + __dirname );
 console.log( 'DEBUG ', JSON.stringify( process.env, null, 2 ) );
 
-function getConfig() {
-  let _config = {};
-  let config = {};
-  let envConfig = {};
-  let configJSMissing = false;
-
-  // try {
-  //   config = require( path.join( __dirname, 'config.js' ) );
-  // } catch ( e ) {
-  //   configJSMissing = true;
-  // }
-  configJSMissing = true;
-
-  if ( process.env.PORT )
-    envConfig.port = process.env.PORT;
-  if ( process.env.HOST )
-    envConfig.host = process.env.HOST;
-  if ( process.env.APIKEY )
-    envConfig.moviedbKey = process.env.APIKEY;
-
-  _config = Object.assign( _config, config, envConfig );
-
-  if ( !_config.port || !_config.host || !_config.moviedbKey ) {
-    console.error( '\nWHOUPS!'.yellow );
-    console.error( '  |'.yellow );
-    console.error( '  v\n'.yellow );
-
-    if ( configJSMissing ) {
-      console.error( 'It seams that you have no config.js. Duplicate config.example.js and name it config.js to get started.' );
-      console.error( 'In order to get this project working, you need to register on <http://themoviedb.org> and get yourself an API v3 key' );
-    }
-    else {
-      console.error( 'One or more options are not set. See config.example.js on how to set up your own config.js.' );
-    }
-
-    process.exit( 1 );
-  }
-
-  return _config;
-}
-
-let config = getConfig();
-
-// let staticDirectory = 'public_dist';
-// if ( process.env.DEVELOPMENT ) {
-//   staticDirectory = 'public';
-// }
-let staticDirectory = 'public';
+let config = {
+  port: ( process.env.PORT || 5000 ),
+  host: process.env.HOST,
+  moviedbKey: ( process.env.APIKEY || '' )
+};
+let staticDirectory = 'public_dist';
 
 const server = new hapi.Server( {
 
