@@ -32,8 +32,12 @@ window.lview = (function( $ ) {
       image: $.create( 'img' ),
     };
 
+    let preloader = new Image();
+    preloader.addEventListener( 'load', showResult );
+    preloader.addEventListener( 'error', showResult );
+    preloader.src = data.poster;
+
     elements.image
-      .listener( 'load', showResult )
       .attr( 'src', data.poster )
       .addClass( 'Result-poster');
 
