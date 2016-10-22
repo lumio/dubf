@@ -8,6 +8,9 @@
     "gulp": "gulp",
     "start": "node ."
   },
+  "engines": {
+    "node": "4.9.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lumio/dubf.git"
