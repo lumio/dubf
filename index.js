@@ -4,6 +4,8 @@ const colors = require( 'colors' );
 const path = require( 'path' );
 const hapi = require( 'hapi' );
 
+console.log( 'DEBUG' + __dirname );
+
 function getConfig() {
   let _config = {};
   let config = {};
