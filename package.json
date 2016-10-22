@@ -25,9 +25,7 @@
     "hapi": "^15.1.1",
     "inert": "^4.0.2",
     "moviedb": "^0.2.7",
-    "random-js": "^1.0.8"
-  },
-  "devDependencies": {
+    "random-js": "^1.0.8",
     "colors": "^1.1.2",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
