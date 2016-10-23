@@ -25,11 +25,22 @@ body, ul, li {
 
 .Info {
   position: absolute;
-  left: 0;
+  right: 0;
   bottom: 0;
   z-index: 100;
   padding: .5rem;
   font: .8rem/1 Helvetica, Arial, sans-serif;
+}
+
+.Info ul {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.Info li {
+  display: inline;
+  margin-left: .5rem;
 }
 
 .Info a, .Info a:link {
@@ -40,4 +51,15 @@ body, ul, li {
 
 .Info a:hover {
   color: #000;
+}
+
+.Info .Info-github img {
+  width: 16px;
+  height: auto;
+  opacity: .4;
+  transition: all 1s;
+}
+
+.Info .Info-github a:hover img {
+  opacity: 1;
 }
