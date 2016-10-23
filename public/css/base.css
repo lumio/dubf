@@ -44,22 +44,17 @@ body, ul, li {
 }
 
 .Info a, .Info a:link {
-  color: #b3b3b3;
+  color: #000;
   text-decoration: none;
-  transition: color 1s;
+  opacity: .4;
+  transition: all 1s;
 }
 
 .Info a:hover {
-  color: #000;
+  opacity: 1;
 }
 
 .Info .Info-github img {
   width: 16px;
   height: auto;
-  opacity: .4;
-  transition: all 1s;
-}
-
-.Info .Info-github a:hover img {
-  opacity: 1;
 }
