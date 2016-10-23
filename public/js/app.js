@@ -1,4 +1,4 @@
-(function( $, $v ) {
+(function ( $, $v ) {
 
   let lastType = '';
 
@@ -7,7 +7,7 @@
     $v.showLoadingIndicator();
 
     let url = `/api/dubf/${type}`;
-    $.get( url ).then( function( data ) {
+    $.get( url ).then( function ( data ) {
       window.lview( data );
     } );
   }
@@ -26,15 +26,19 @@
 
   $( 'SelectTypeMovie' ).elm().addEventListener( 'click', selectType );
   $( 'SelectTypeTVShow' ).elm().addEventListener( 'click', selectType );
-  $( 'Restart' ).elm().addEventListener( 'click', function( event ) {
+  $( 'Restart' ).elm().addEventListener( 'click', function ( event ) {
     window.lview.reset( false );
     $( event.target ).focus();
-    receiveItem( lastType );
-    setTimeout( function() {
+
+    setTimeout( function () {
+      receiveItem( lastType );
+    }, 600 );
+
+    setTimeout( function () {
       $( event.target ).blur();
     }, 1000 )
   } );
-  $( 'Reset' ).elm().addEventListener( 'click', function() {
+  $( 'Reset' ).elm().addEventListener( 'click', function () {
     window.lview.reset();
   } )
 

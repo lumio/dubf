@@ -32,12 +32,10 @@ window.lsel = (function() {
       },
 
       show() {
-        console.log( 'show', element );
         this.addClass( 'visible' );
       },
 
       hide() {
-        console.log( 'hide', element );
         this.removeClass( 'visible' );
       },
 
