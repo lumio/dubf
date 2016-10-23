@@ -22,3 +22,22 @@ body, ul, li {
 
   background: #fff;
 }
+
+.Info {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  padding: .5rem;
+  font: .8rem/1 Helvetica, Arial, sans-serif;
+}
+
+.Info a, .Info a:link {
+  color: #b3b3b3;
+  text-decoration: none;
+  transition: color 1s;
+}
+
+.Info a:hover {
+  color: #000;
+}
