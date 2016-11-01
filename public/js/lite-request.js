@@ -2,7 +2,7 @@
   $.request = function( options ) {
 
     return new Promise( ( resolve, reject ) => {
-      let _options = Object.assign( {
+      let _options = $.assign( {
         method: '',
         url: '',
         data: null,

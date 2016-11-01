@@ -100,6 +100,24 @@ window.lsel = (function() {
     return window.lsel( elm );
   };
 
+  obj.assign = function( ...args ) {
+    if ( typeof Object.assign !== 'undefined' ) {
+      return Object.assign.apply( null, args );
+    }
+
+    let result = {};
+    for ( let i in args ) {
+      for ( let key in args[ i ] ) {
+        if ( !args[ i ].hasOwnProperty( key ) ) {
+          continue;
+        }
+
+        result[ key ] = args[ i ][ key ];
+      }
+    }
+    return result;
+  };
+
   return obj;
 
 })();
