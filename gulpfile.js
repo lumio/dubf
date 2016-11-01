@@ -8,6 +8,7 @@ const concat = require( 'gulp-concat' );
 const cleanCSS = require( 'gulp-clean-css' );
 const order = require( 'gulp-order' );
 const babel = require( 'gulp-babel' );
+const minify = require( 'gulp-minify' );
 const htmlreplace = require( 'gulp-html-replace' );
 const htmlmin = require( 'gulp-htmlmin' );
 
@@ -43,6 +44,7 @@ gulp.task( 'build-js', function() {
       presets: [ 'es2015' ]
     } ) )
     .pipe( concat( 'app.js' ) )
+    .pipe( minify() )
     .pipe( gulp.dest( path.join( distFolder, 'js' ) ) );
 } );
 
@@ -52,7 +54,7 @@ gulp.task( 'build', [ 'build-js', 'build-css' ], function() {
 
   let replaceOptions = {
     css: 'css/main.css',
-    js: 'js/app.js',
+    js: 'js/app-min.js',
     promise: 'js/es6-promise.auto.min.js',
   };
 
