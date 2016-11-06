@@ -50,7 +50,7 @@ server.register( require( 'inert' ), ( err ) => {
 
   } );
 
-  require( path.join( __dirname, 'lib/moviedb' ) )( server );
+  require( path.join( __dirname, 'lib/moviedb' ) ).init( server );
 
   server.start( ( err ) => {
 
