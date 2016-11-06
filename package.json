@@ -4,7 +4,7 @@
   "description": "Dubf the oracle will pick your next movie or series to watch.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha **/*.spec.js",
     "gulp": "gulp",
     "start": "npm run gulp build && node index.js"
   },
@@ -43,5 +43,12 @@
     "memory-cache": "^0.1.6",
     "moviedb": "^0.2.7",
     "random-js": "^1.0.8"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "chai-object": "0.0.1",
+    "mocha": "^3.1.2",
+    "mocha-clean": "^1.0.0"
   }
 }
