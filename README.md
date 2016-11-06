@@ -1,4 +1,4 @@
-Dubf Almighty
+Dubf Almighty [![Build Status](https://travis-ci.org/lumio/dubf.svg?branch=release%2F1.1.0)](https://travis-ci.org/lumio/dubf)
 =============
 
 The name is kind of a joke. It occurred when friends and I planned a little movie night and I just made a typo:
