@@ -9,7 +9,7 @@
     "start": "npm run gulp build && node index.js"
   },
   "engines": {
-    "node": "6.9.1"
+    "node": "6.11.1"
   },
   "repository": {
     "type": "git",
