@@ -6,8 +6,6 @@ The name is kind of a joke. It occurred when friends and I planned a little movi
  
 So in memory of Dubf, this is going to be a random movie/series picker.
  
-Since this is a weekend project and the weekend here in Europe just began, this is still in the making.
- 
 Best wishes  
 – Ben
 
@@ -16,18 +14,18 @@ Running the app
 
 In order to use this application you need an API key from themoviedb.org.
 It is free and you can generate a key within 2 minutes. Duplicate the `config.example.js` and name it `config.js`.
-Enter your API v3 key and then install the Node dependencies with `npm i` (hint: you need to have NodeJS installed).
+Enter your API v3 key and then install the Node dependencies with `yarn` (hint: you need to have NodeJS and yarn installed).
 
 Start the server with
 
 ```
-npm start
+yarn start
 ```
 
 Disclaimer
 ----------
 
-This project would not work without the great API of TheMovieDB.org <https://www.themoviedb.org>.
+This project would not work without the great API of [TheMovieDB.org](https://www.themoviedb.org).
 
-Feel free to copy and fork and manipulate and do the f* whatever you want with this project.
+Feel free to copy and fork and manipulate and do whatever you want with this project.
 See the license for "more" details.
