@@ -1,4 +1,6 @@
-**WARNING**  
+WARNING: USE AT OWN RISK
+---
+
 I created this project just to make a point, that you don't need any library to make a simple user interface.  
 **This project is outdated and has some dependencies that have security issues!** I will fix this soon, but for now: be warned :)
 
